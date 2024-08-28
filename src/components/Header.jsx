@@ -1,8 +1,17 @@
-import PropTypes from 'prop-types';
+import { useMemo } from "react";
+import PropTypes from "prop-types";
 
-const Header = ({ className = '', showRocketGif = false }) => {
+const Header = ({ className = "", titleMargin, showRocketGif = false }) => {
+  const titleStyle = useMemo(() => {
+    return {
+      margin: titleMargin,
+    };
+  }, [titleMargin]);
+
   return (
-    <div className={`self-stretch flex flex-col items-center justify-start gap-6 max-w-full text-center text-45xl text-darkslategray-200 font-poppins ${className}`}>
+    <div
+      className={`self-stretch flex flex-col items-center justify-start gap-6 max-w-full text-center text-45xl text-darkslategray-200 font-poppins ${className}`}
+    >
       <div className="self-stretch flex flex-row items-center justify-center flex-wrap content-center gap-2 max-w-full">
         {showRocketGif && (
           <img
@@ -12,7 +21,10 @@ const Header = ({ className = '', showRocketGif = false }) => {
             src="/light-mode-rocket-gif.svg"
           />
         )}
-        <div className="flex-1 relative leading-[100%] font-semibold text-transparent !bg-clip-text [background:linear-gradient(90.04deg,_#0f0f0f,_#333)] [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] inline-block min-w-[621px] max-w-full mq450:text-19xl mq450:leading-[38px] mq975:text-32xl mq975:leading-[51px] mq975:min-w-full">
+        <div
+          className="flex-1 relative leading-[100%] font-semibold text-transparent !bg-clip-text [background:linear-gradient(90.04deg,_#0f0f0f,_#333)] [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] inline-block min-w-[621px] max-w-full mq450:text-19xl mq450:leading-[38px] mq975:text-32xl mq975:leading-[51px] mq975:min-w-full"
+          style={titleStyle}
+        >
           Launching New Module Soon!
         </div>
       </div>
@@ -33,6 +45,7 @@ const Header = ({ className = '', showRocketGif = false }) => {
 
 Header.propTypes = {
   className: PropTypes.string,
+  titleMargin: PropTypes.any,
   showRocketGif: PropTypes.bool,
 };
 
